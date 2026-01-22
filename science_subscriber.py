@@ -18,7 +18,7 @@ class ScienceSubscriber(Node):
             self.get_logger().warn("Received incomplete data array")
             return
 
-        red = bool(data[0])
+        colourless = bool(data[0])
         purple = bool(data[1])
         pink = bool(data[2])
 
@@ -36,7 +36,7 @@ class ScienceSubscriber(Node):
         dist = data[13]
 
         self.get_logger().info(
-            f"\nColors -> Red:{red}, Purple:{purple}, Pink:{pink}"
+            f"\nColors -> Colourless:{colourless}, Purple:{purple}, Pink:{pink}"
             f"\nNPK -> N:{N:.1f}, P:{P:.1f}, K:{K:.1f}"
             f"\npH:{ph:.2f}, CO2:{co2:.1f} ppm"
             f"\nTemp:{temp:.2f} °C, Pressure:{press:.2f} hPa, Alt:{alt:.2f} m"
