@@ -43,10 +43,26 @@ class ScienceSubscriber(Node):
             f"\nLat:{lat:.6f}, Lon:{lon:.6f}, Distance:{dist:.2f} cm"
         )
 
-        with open("/home/administratror/sci_publisher_data_log_0x2000/science_data_log.txt", "a") as f:
-            f.write(
-                f"{time()},{colourless},{purple},{pink},{N:.1f},{P:.1f},{K:.1f},{ph:.2f},{co2:.1f},{temp:.2f},{press:.2f},{alt:.2f},{lat:.6f},{lon:.6f},{dist:.2f}\n"
-            )
+        # with open("/home/administratror/sci_publisher_data_log_0x2000/science_data_log.txt", "r") as f:
+        #     num_lines = len(f.readlines())
+
+        # if num_lines > 100:
+
+        #     # show a lockfile to block read
+        #     with open("/home/administratror/sci_publisher_data_log_0x2000/lockfile.lock", "w") as lockfile:
+        #         lockfile.write("locked")
+
+        #     with open("/home/administratror/sci_publisher_data_log_0x2000/science_data_log.txt", "w") as f:
+        #         f.write("") # clear file
+
+        #     # remove lockfile to allow read
+        #     import os
+        #     os.remove("/home/administratror/sci_publisher_data_log_0x2000/lockfile.lock")
+
+        # with open("/home/administratror/sci_publisher_data_log_0x2000/science_data_log.txt", "a") as f:
+        #     f.write(
+        #         f"{time()},{colourless},{purple},{pink},{N:.1f},{P:.1f},{K:.1f},{ph:.2f},{co2:.1f},{temp:.2f},{press:.2f},{alt:.2f},{lat:.6f},{lon:.6f},{dist:.2f}\n"
+        #     )
 
 def main(args=None):
     rclpy.init(args=args)
