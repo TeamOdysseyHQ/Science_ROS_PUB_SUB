@@ -24,12 +24,12 @@ class KeyboardPublisher(Node):
 
     def run(self):
         msg = Int32MultiArray()
-        msg.data = [0, 0, 0, 0]
+        msg.data = [0, 0, 0, 0, 0]  # [linear Actuator, drill speed, barrel_rotate, servo_toggle, science_explore_toggle]
 
         while rclpy.ok():
             key = self.get_key()
 
-            msg.data = [0, 0, 0, 0]
+            msg.data = [0, 0, 0, 0, 0]
 
             if key == '\x1b':  # Arrow keys
                 k2 = self.get_key()
@@ -49,6 +49,9 @@ class KeyboardPublisher(Node):
 
             elif key == 's':
                 msg.data[3] = 1
+
+            elif key == 'e':
+                msg.data[4] = 1
 
             self.pub.publish(msg)
             self.get_logger().info(f"Published: {msg.data}")
