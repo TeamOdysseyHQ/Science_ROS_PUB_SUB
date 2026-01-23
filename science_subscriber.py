@@ -20,7 +20,7 @@ class ScienceSubscriber(Node):
 
         colourless = bool(data[0])
         purple = bool(data[1])
-        pink = bool(data[2])
+        humidity = data[2]
 
         N = data[3]
         P = data[4]
@@ -36,7 +36,7 @@ class ScienceSubscriber(Node):
         dist = data[13]
 
         self.get_logger().info(
-            f"\nColors -> Colourless:{colourless}, Purple:{purple}, Pink:{pink}"
+            f"\nColors -> Colourless:{colourless}, Purple:{purple}\nHumidity:{humidity}"
             f"\nNPK -> N:{N:.1f}, P:{P:.1f}, K:{K:.1f}"
             f"\npH:{ph:.2f}, CO2:{co2:.1f} ppm"
             f"\nTemp:{temp:.2f} °C, Pressure:{press:.2f} hPa, Alt:{alt:.2f} m"
