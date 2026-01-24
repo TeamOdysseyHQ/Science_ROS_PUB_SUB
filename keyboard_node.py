@@ -24,7 +24,9 @@ class KeyboardPublisher(Node):
 
     def run(self):
         msg = Int32MultiArray()
-        msg.data = [0, 0, 0, 0, 0]  # [linear Actuator, drill speed, barrel_rotate, servo_toggle, science_explore_toggle]
+        # LA => -1 = go down, 0 = full step, 1 = go up, 4 = 1/4 step, 8 = 1/8 step, 16 = 1/16 step
+        # Drill => -3 = abrupt drill stop, -2 = clockwise, -1 = decrease speed, 0 = full step, 1 = increase speed, 2 = counter-clockwise, 4 = 1/4 step, 8 = 1/8 step, 16 = 1/16 step
+        msg.data = [0, 0, 0, 0, 0]  # [linear Actuator, drill, barrel_rotate, servo_toggle, science_explore_toggle]
 
         while rclpy.ok():
             key = self.get_key()
