@@ -42,15 +42,16 @@ class KeyboardPublisher(Node):
                 k2 = self.get_key()
                 k3 = self.get_key()
 
-                if k3 == 'A':      # UP
+                if k3 == 'A':      # UP, LA up
                     msg.data[0] = 1
-                elif k3 == 'B':    # DOWN
+                elif k3 == 'B':    # DOWN, LA down
                     msg.data[0] = -1
-                elif k3 == 'C':    # RIGHT
+                elif k3 == 'C':    # RIGHT, Drill increase speed
                     msg.data[1] = 1
-                elif k3 == 'D':    # LEFT
+                elif k3 == 'D':    # LEFT, Drill decrease speed
                     msg.data[1] = -1
 
+            # LA - micro steps
             elif key == '1':
                 msg.data[0] = 0
             elif key == '2':
@@ -60,6 +61,7 @@ class KeyboardPublisher(Node):
             elif key == '4':
                 msg.data[0] = 16
 
+            # Barrel rotate - micro steps
             elif key == '5':
                 msg.data[2] = 0
             elif key == '6':
@@ -69,27 +71,27 @@ class KeyboardPublisher(Node):
             elif key == '8':
                 msg.data[2] = 16
 
-            elif key == 'a':
+            elif key == 'a': # abrupt stop drill
                 msg.data[1] = 0
-            elif key == 'q':
+            elif key == 'q': # drill clockwise
                 msg.data[1] = -2
-            elif key == 'e':
+            elif key == 'e': # drill counter-clockwise
                 msg.data[1] = 2
 
-            elif key == 'b':
+            elif key == 'b': # barrel rotate right
                 msg.data[2] = 1
 
-            elif key == 's':
+            elif key == 's': # ph servo toggle
                 if not ph_servo_pressed: # not already pressed before
                     msg.data[3] = 1
                 else:
                     msg.data[3] = 0
                 ph_servo_pressed = not ph_servo_pressed
 
-            elif key == 'd':
+            elif key == 'd': # drop sample
                 msg.data[3] = 2
 
-            elif key == 'y':
+            elif key == 'y': # science mode toggle
                 if not science_mode_enabled: # not already pressed before
                     msg.data[4] = 1
                 else:
