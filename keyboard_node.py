@@ -25,9 +25,9 @@ class KeyboardPublisher(Node):
 
     def run(self):
         msg = Int32MultiArray()
-        # LA => -1 = go down, 0 = full step, 1 = go up, 4 = 1/4 step, 8 = 1/8 step, 16 = 1/16 step
+        # LA => -1 = go down, 1 = go up,
         # Drill => , -2 = clockwise, -1 = decrease speed, 0 = abrupt stop, 1 = increase speed, 2 = counter-clockwise
-        # barrel_rotate => 1 = rotate right, 0 = full step, 4 = 1/4 step, 8 = 1/8 step, 16 = 1/16 step
+        # barrel_rotate =>-1 = rotate backward, 1 = rotate forward
         # servo_toggle => 0 = off servo, 1 = on servo, 2 = drop sample
         # science_explore_toggle => 0= off science module, 1 = On science exploration
         msg.data = [-6, -6, -6, -6, -6]  # [linear Actuator, drill, barrel_rotate, servo_toggle, science_explore_toggle]
@@ -51,25 +51,25 @@ class KeyboardPublisher(Node):
                 elif k3 == 'D':    # LEFT, Drill decrease speed
                     msg.data[1] = -1
 
-            # LA - micro steps
-            elif key == '1':
-                msg.data[0] = 0
-            elif key == '2':
-                msg.data[0] = 4
-            elif key == '3':
-                msg.data[0] = 8
-            elif key == '4':
-                msg.data[0] = 16
+            # # LA - micro steps
+            # elif key == '1':
+            #     msg.data[0] = 0
+            # elif key == '2':
+            #     msg.data[0] = 4
+            # elif key == '3':
+            #     msg.data[0] = 8
+            # elif key == '4':
+            #     msg.data[0] = 16
 
-            # Barrel rotate - micro steps
-            elif key == '5':
-                msg.data[2] = 0
-            elif key == '6':
-                msg.data[2] = 4
-            elif key == '7':
-                msg.data[2] = 8
-            elif key == '8':
-                msg.data[2] = 16
+            # # Barrel rotate - micro steps
+            # elif key == '5':
+            #     msg.data[2] = 0
+            # elif key == '6':
+            #     msg.data[2] = 4
+            # elif key == '7':
+            #     msg.data[2] = 8
+            # elif key == '8':
+            #     msg.data[2] = 16
 
             elif key == 'a': # abrupt stop drill
                 msg.data[1] = 0
@@ -78,8 +78,10 @@ class KeyboardPublisher(Node):
             elif key == 'e': # drill counter-clockwise
                 msg.data[1] = 2
 
-            elif key == 'b': # barrel rotate right
+            elif key == 'f': # barrel rotate frontward
                 msg.data[2] = 1
+            elif key == 'b': # barrel rotate backward
+                msg.data[2] = -1
 
             elif key == 's': # ph servo toggle
                 if not ph_servo_pressed: # not already pressed before
